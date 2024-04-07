@@ -8,14 +8,26 @@ import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 
-const user = {
+interface User {
+  name: string;
+  email: string;
+  imageUrl: string;
+}
+
+const user: User = {
   name: 'Akash',
   email: 'Akash@example.com',
   imageUrl:
     'https://images.unsplash.com/photo-1475821660373-587d74229161?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGN1dGUlMjAlMjBnaXJsfGVufDB8fDB8fHww',
 };
 
-const navigation = [
+interface NavigationItem {
+  name: string;
+  href: string;
+  current: boolean;
+}
+
+const navigation: NavigationItem[] = [
   { name: 'Dashboard', href: '#', current: true },
   { name: 'Team', href: '#', current: false },
   { name: 'Projects', href: '#', current: false },
@@ -28,8 +40,8 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ];
 
-const Navbar = () => {
-  const { order_id } = useParams();
+const Navbar: React.FC = () => {
+  const { order_id } = useParams<{ order_id?: string }>();
 
   return (
     <>

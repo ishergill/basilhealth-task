@@ -10,18 +10,19 @@ import { machineNamesWithAddresses } from "../../../constants/machinerecords";
 // !3rd pary
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-const MachineTable = () => {
-  // Row Data: The data to be displayed.
-  const [rowData, setRowData] = useState([...machineNamesWithAddresses]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [sortedField, setSortedField] = useState("");
-  const [sortOrder, setSortOrder] = useState<String>("asc");
-  const [filteredData, setFilteredData] = useState<any>([]);
-  const [rowPerPage, setRowPerPage] = useState(10);
-  const [searchValue, setSearchValue] = useState("");
 
-  const handleSort = (field: any) => {
+const MachineTable: React.FC = () => {
+  // Row Data: The data to be displayed.
+  const [rowData, setRowData] = useState<any[]>([...machineNamesWithAddresses]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [sortedField, setSortedField] = useState<string>("");
+  const [sortOrder, setSortOrder] = useState<string>("asc");
+  const [filteredData, setFilteredData] = useState<any[]>([]);
+  const [rowPerPage, setRowPerPage] = useState<number>(10);
+  const [searchValue, setSearchValue] = useState<string>("");
+
+  const handleSort = (field: string) => {
     const newSortOrder =
       field === sortedField ? (sortOrder === "asc" ? "desc" : "asc") : "asc";
     const sortedData = [...filteredData].sort((a: any, b: any) => {
@@ -41,7 +42,7 @@ const MachineTable = () => {
     setFilteredData(sortedData);
   };
 
-  const handleSearch = (event: any) => {
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setSearchValue(value);
     const filtered = rowData.filter((item) => {
@@ -112,7 +113,7 @@ const MachineTable = () => {
                   />
                 </div>
               </th>
-              {Object.keys(rowData[0]).slice(2,4).map((el) => (
+              {Object.keys(rowData[0]).slice(2, 4).map((el) => (
                 <th
                   scope="col"
                   key={el}
@@ -202,3 +203,5 @@ const MachineTable = () => {
 };
 
 export default MachineTable;
+
+

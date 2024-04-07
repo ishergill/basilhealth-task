@@ -1,9 +1,9 @@
 import  { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-export default function Breadcrumb() {
-    const { order_id } = useParams();
-    const [pages, setPages] = useState('');
+const Breadcrumb: React.FC = () => {
+    const { order_id } = useParams<{ order_id: string }>();
+    const [pages, setPages] = useState<string>('');
 
     useEffect(() => {
         if (order_id) {
@@ -49,4 +49,6 @@ export default function Breadcrumb() {
             </ol>
         </nav>
     );
-}
+};
+
+export default Breadcrumb;
